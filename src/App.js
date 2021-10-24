@@ -1,11 +1,11 @@
 import './App.css';
-import Counter from './components/Counter';
+import Counters from './components/Counters';
 
 function App() {
   return (
     <div className='App'>
-      <h1 className='text-danger display-5'>The Counter App</h1>
-      <Counter></Counter>
+      <h1 className='text-danger jumbotron'>React Counter</h1>
+      <Counters />
     </div>
   );
 }

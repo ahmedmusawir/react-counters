@@ -2,10 +2,7 @@ import React, { Component } from 'react';
 
 export class Counter extends Component {
   state = {
-    count: 0,
-    imageUrl: 'https://picsum.photos/400/200',
-    tags: ['tag1', 'tag2', 'tag3'],
-    product: 'id:1',
+    value: this.props.counter.value,
   };
   stylesImg = {
     clear: 'both',
@@ -17,47 +14,38 @@ export class Counter extends Component {
     padding: '.5rem',
   };
 
-  handleIncrement = (product) => {
-    console.info('Clicked', product);
-    this.setState({ count: this.state.count + 1 });
+  handleIncrement = () => {
+    this.setState({ value: this.state.value + 1 });
   };
 
   render() {
     return (
-      <>
-        <img style={this.stylesImg} src={this.state.imageUrl} alt='' />
+      <div className='mt-2'>
+        {this.props.children}
         <span style={this.stylesBadge} className={this.styleCount()}>
           {this.formatCount()}
         </span>
-        <button
-          onClick={() => this.handleIncrement(this.state.product)}
-          className='btn btn-info'
-        >
+        <button onClick={() => this.handleIncrement()} className='btn btn-info'>
           Increament
         </button>
-        {/* <button onClick={this.handleIncrement} className='btn btn-info'>
-          Increament
-        </button> */}
-        <div>
-          {this.state.tags.length === 0 && 'Please Create a new Tag...'}
-        </div>
-        {this.renderTags()}
-      </>
+        <button
+          onClick={() => this.props.onDelete(this.props.counter.id)}
+          className='btn btn-danger m-2'
+        >
+          Delete
+        </button>
+      </div>
     );
   }
 
-  renderTags = () => {
-    return this.state.tags.map((tag) => <li>{tag}</li>);
-  };
-
   formatCount = () => {
-    const { count } = this.state;
-    return count === 0 ? 'Zero' : count;
+    const { value } = this.state;
+    return value === 0 ? 'Zero' : value;
   };
 
   styleCount = () => {
     let classes = 'badge mr-4 badge-';
-    classes += this.state.count === 0 ? 'warning' : 'primary';
+    classes += this.state.value === 0 ? 'warning' : 'primary';
     return classes;
   };
 }
