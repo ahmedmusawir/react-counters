@@ -7,24 +7,35 @@ export class Counter extends Component {
   };
 
   render() {
+    const { value, counter, onDecrement, onIncrement, onDelete } = this.props;
+
     return (
-      <div className='mt-2'>
-        {this.props.children}
-        <span style={this.stylesBadge} className={this.styleCount()}>
-          {this.formatCount()}
-        </span>
-        <button
-          onClick={() => this.props.onIncrement(this.props.counter)}
-          className='btn btn-info'
-        >
-          Increament
-        </button>
-        <button
-          onClick={() => this.props.onDelete(this.props.counter.id)}
-          className='btn btn-danger m-2'
-        >
-          Delete
-        </button>
+      <div className='mt-2 row'>
+        <div className='col-6'>
+          {this.props.children}
+          <span style={this.stylesBadge} className={this.styleCount()}>
+            {this.formatCount()}
+          </span>
+        </div>
+
+        <div className='col-6'>
+          <button onClick={() => onIncrement(counter)} className='btn btn-info'>
+            +
+          </button>
+          <button
+            onClick={() => onDecrement(counter)}
+            className='btn btn-info m-2'
+            disabled={counter.value === 0 ? 'disabled' : ''}
+          >
+            -
+          </button>
+          <button
+            onClick={() => onDelete(counter.id)}
+            className='btn btn-danger'
+          >
+            X
+          </button>
+        </div>
       </div>
     );
   }

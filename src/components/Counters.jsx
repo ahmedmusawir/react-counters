@@ -9,7 +9,8 @@ export class Counters extends Component {
   };
 
   render() {
-    const { imageUrl, onReset, onIncrement, onDelete, counters } = this.props;
+    const { imageUrl, onReset, onIncrement, onDecrement, onDelete, counters } =
+      this.props;
     return (
       <div>
         <button onClick={onReset} className='btn btn-success btn-block m-2'>
@@ -22,6 +23,7 @@ export class Counters extends Component {
             key={counter.id}
             onDelete={onDelete}
             onIncrement={onIncrement}
+            onDecrement={onDecrement}
             counter={counter}
           >
             <h5 className='font-weight-bold'>Counter ID: {counter.id}</h5>
