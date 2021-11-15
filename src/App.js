@@ -1,68 +1,33 @@
-import React, { Component } from 'react';
-import Counters from './components/Counters';
-import Navbar from './components/Navbar';
+import React from 'react';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import MainNavbar from './components/MainNavbar';
+import CounterPage from './pages/CounterPage';
+import UseStatePage from './pages/UseStatePage';
+import NotFound from './pages/NotFound';
+import HomePage from './pages/HomePage';
 import './App.scss';
 
-class App extends Component {
-  state = {
-    imageUrl: 'https://picsum.photos/400/200',
-    counters: [
-      { id: 1, value: 40 },
-      { id: 2, value: 0 },
-      { id: 3, value: 10 },
-      { id: 4, value: 0 },
-    ],
-  };
-
-  handleReset = () => {
-    const counters = this.state.counters.map((c) => (c.value = 0));
-    this.setState(counters);
-  };
-
-  handleIncrement = (counter) => {
-    const counters = [...this.state.counters];
-    const index = counters.indexOf(counter);
-    counters[index] = { ...counter };
-    counters[index].value++;
-
-    this.setState({ counters });
-  };
-
-  handleDecrement = (counter) => {
-    const counters = [...this.state.counters];
-    const index = counters.indexOf(counter);
-    counters[index] = { ...counter };
-    counters[index].value--;
-
-    this.setState({ counters });
-  };
-
-  handleDelete = (counterId) => {
-    const counters = this.state.counters.filter(
-      (counter) => counter.id !== counterId
-    );
-    this.setState({ counters });
-  };
-
-  render() {
-    return (
-      <div className='App'>
-        <Navbar
-          totalCounters={this.state.counters.filter((c) => c.value > 0).length}
-        />
-        <main className='container'>
-          <Counters
-            imageUrl={this.state.imageUrl}
-            counters={this.state.counters}
-            onReset={this.handleReset}
-            onIncrement={this.handleIncrement}
-            onDecrement={this.handleDecrement}
-            onDelete={this.handleDelete}
-          />
-        </main>
-      </div>
-    );
-  }
+function App(props) {
+  return (
+    <BrowserRouter>
+      <MainNavbar />
+      <main>
+        <Switch>
+          <Route exact path='/'>
+            <HomePage />
+          </Route>
+          <Route path='/use-state-page'>
+            <UseStatePage />
+          </Route>
+          <Route path='/*'>
+            <NotFound />
+          </Route>
+        </Switch>
+      </main>
+    </BrowserRouter>
+  );
 }
+
+App.propTypes = {};
 
 export default App;
