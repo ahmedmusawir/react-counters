@@ -4,10 +4,10 @@ import { Navbar, Nav, NavDropdown, Container } from 'react-bootstrap';
 
 function MainNavbar(props) {
   return (
-    <Navbar bg='light' expand='lg'>
+    <Navbar bg='light' expand='md'>
       <Container>
         <Navbar.Brand as={Link} to='/'>
-          React-Bootstrap
+          React Demo 1
         </Navbar.Brand>
         <Navbar.Toggle aria-controls='basic-navbar-nav' />
         <Navbar.Collapse id='basic-navbar-nav'>

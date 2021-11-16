@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { CopyBlock, atomOneLight } from 'react-code-blocks';
 import { useStateCode } from '../data/useStateCode';
-import { Container } from 'react-bootstrap';
-import Page from '../funcomponents/Page';
+import Page from '../components/layouts/Page';
 
 function UseState(props) {
   const [counter, setCounter] = useState(0);
@@ -18,9 +17,9 @@ function UseState(props) {
   };
 
   return (
-    <Page wide={false}>
+    <Page wide={false} pageTitle='useState'>
       <div>
-        <h1>Use Effect Example</h1>
+        <h1>Use State Example</h1>
         <hr />
         <button onClick={minusCount} className='btn btn-primary mr-4'>
           -

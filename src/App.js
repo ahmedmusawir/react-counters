@@ -1,7 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import MainNavbar from './components/MainNavbar';
-import CounterPage from './pages/CounterPage';
+import MainNavbar from './components/general/MainNavbar';
 import UseStatePage from './pages/UseStatePage';
 import NotFound from './pages/NotFound';
 import HomePage from './pages/HomePage';

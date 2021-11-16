@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Counters from '../components/Counters';
-import Navbar from '../components/Navbar';
+import Counters from '../components_class/Counters';
+import Navbar from '../components_class/Navbar';
 
 class CounterPage extends Component {
   state = {

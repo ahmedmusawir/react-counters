@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import Page from '../funcomponents/Page';
-import { Row, Col, Button } from 'react-bootstrap';
-import Content from '../funcomponents/Content';
+import Page from '../components/layouts/Page';
+import PageHeader from '../components/count-page/PageHeader';
+import Counters from '../components/count-page/Counters';
 
 export default function HomePage() {
   const stylesBadge = {
@@ -60,53 +60,21 @@ export default function HomePage() {
   };
 
   return (
-    <Page wide={false}>
-      <Row className='justify-content-center'>
-        <Col sm={12}>
-          <Content width='w-100'>
-            <h3>It's All About The Count...</h3>
-            <Button onClick={onReset} variant='danger' size='sm'>
-              Reset
-            </Button>
-            <h4 className='float-right'>
-              Positivity:{' '}
-              <span className='badge badge-success' style={stylesBadge}>
-                {counters.filter((c) => c.value > 0).length}
-              </span>
-            </h4>
-          </Content>
-        </Col>
-      </Row>
-
-      {counters.map((counter) => (
-        <Row key={counter.id} className='justify-content-center'>
-          <Col sm={12} md={6}>
-            <Content width='w-100' cssClassNames=''>
-              <div style={stylesBadge} className={styleCount(counter)}>
-                {formatCount(counter)}
-              </div>
-              Counter ID: {counter.id}
-            </Content>
-          </Col>
-          <Col sm={12} md={6}>
-            <Content width='w-100'>
-              <Button variant='success' onClick={() => onIncrement(counter.id)}>
-                +
-              </Button>{' '}
-              <Button
-                disabled={counter.value <= 0 ? 'disabled' : ''}
-                onClick={() => onDecrement(counter.id)}
-                variant='warning'
-              >
-                -
-              </Button>{' '}
-              <Button variant='danger' onClick={() => onDelete(counter.id)}>
-                X
-              </Button>
-            </Content>
-          </Col>
-        </Row>
-      ))}
+    <Page wide={false} pageTitle='Home Page'>
+      <PageHeader
+        counters={counters}
+        stylesBadge={stylesBadge}
+        onReset={onReset}
+      />
+      <Counters
+        counters={counters}
+        stylesBadge={stylesBadge}
+        styleCount={styleCount}
+        formatCount={formatCount}
+        onIncrement={onIncrement}
+        onDecrement={onDecrement}
+        onDelete={onDelete}
+      />
     </Page>
   );
 }
